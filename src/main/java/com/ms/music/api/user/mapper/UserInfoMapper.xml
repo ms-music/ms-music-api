@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ms.music.api.user.mapper.UserInfoMapper">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.ms.music.api.user.model.UserInfo" id="UserInfoMap">
+        <id column="user_id" property="userId" jdbcType="VARCHAR"/>
+        <result column="user_name" property="userName" jdbcType="VARCHAR"/>
+        <result column="user_password" property="userPassword" jdbcType="VARCHAR"/>
+        <result column="user_telephone" property="userTelephone" jdbcType="VARCHAR"/>
+        <result column="user_status" property="userStatus" jdbcType="INTEGER"/>
+    </resultMap>
+
+
+    <select id="selectUserInfoByUserId" parameterType="java.lang.String" resultMap="UserInfoMap">
+        select
+            *
+        from
+            t_user
+        where
+            user_id = #{userId,jdbcType=VARCHAR}
+    </select>
+
+    <select id="login" parameterType="java.lang.String" resultMap="UserInfoMap">
+        select
+            *
+        from
+            t_user
+        where
+            user_name = #{userName,jdbcType=VARCHAR}
+    </select>
+
+
+</mapper>
